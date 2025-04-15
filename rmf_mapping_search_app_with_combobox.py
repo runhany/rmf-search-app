@@ -12,13 +12,13 @@ def load_data():
     response = requests.get(url)
     csv_raw = StringIO(response.text)
     df = pd.read_csv(csv_raw)
+    df.columns = df.columns.str.strip()
     return df
 
 df = load_data()
 
 st.title("⚡ 빠른 RMF → ATT&CK → CVE → CCE 검색 앱")
 st.markdown("최적화된 속도로 RMF 기반 보안 매핑을 검색할 수 있습니다.")
-st.write("📋 현재 CSV 컬럼 목록:", df.columns.tolist())
 
 # 단일 검색 대상 선택 (속도 향상)
 available_fields = ['RMF ID', 'ATT&CK ID', 'CVE ID', 'CCE ID', 'RMF 설명', 'CVE 설명']
