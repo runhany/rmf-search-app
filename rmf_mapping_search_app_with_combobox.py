@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 
 @st.cache_data(ttl=3600)
 def load_data():
-    file_id = "YOUR_GOOGLE_DRIVE_FILE_ID"  # 🔁 여기를 사용자 파일 ID로 변경
-    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    file_id = "1qLhjML-02cLN6ZU2WU9-bmQ1yNQPmjRo"  # 🔁 여기를 사용자 파일 ID로 변경
+        url = f"https://drive.google.com/uc?export=download&id={file_id}"
     response = requests.get(url)
     csv_raw = StringIO(response.text)
     df = pd.read_csv(csv_raw)
