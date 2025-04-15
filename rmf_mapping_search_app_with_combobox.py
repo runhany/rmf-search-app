@@ -1,11 +1,20 @@
 
 import streamlit as st
 import pandas as pd
+import requests
+from io import StringIO
 import matplotlib.pyplot as plt
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("RMF_ATTCK_CVE_CCE_to_CCE_RMF.csv")
+    # Google Drive 파일 ID
+    file_id = "1qLhjML-02cLN6ZU2WU9-bmQ1yNQPmjRo"  # ← 당신의 ID로 바꿔주세요
+    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+
+    # CSV 다운로드 후 데이터프레임으로 변환
+    response = requests.get(url)
+    csv_raw = StringIO(response.text)
+    df = pd.read_csv(csv_raw)
     return df
 
 df = load_data()
