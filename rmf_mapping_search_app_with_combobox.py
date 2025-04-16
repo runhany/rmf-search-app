@@ -8,11 +8,18 @@ import matplotlib.pyplot as plt
 @st.cache_data(ttl=3600)
 def load_data():
     file_id = "1qLhjML-02cLN6ZU2WU9-bmQ1yNQPmjRo"  # 🔁 여기를 사용자 파일 ID로 변경
-        url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+
     response = requests.get(url)
     csv_raw = StringIO(response.text)
+
+    # CSV 아닌 경우 확인
+    st.code(response.text[:300])
+    
     df = pd.read_csv(csv_raw)
-    df.columns = df.columns.str.strip()
+    df.columns = df.columns.str.strip()  # 공백 제거
+    #st.write("✅ 컬럼 목록:", df.columns.tolist())  # 확인용
+
     return df
 
 df = load_data()
