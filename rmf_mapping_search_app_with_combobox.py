@@ -18,7 +18,7 @@ def load_data():
     
     df = pd.read_csv(csv_raw)
     df.columns = df.columns.str.strip()  # 공백 제거
-    #st.write("✅ 컬럼 목록:", df.columns.tolist())  # 확인용
+    st.write("✅ 컬럼 목록:", df.columns.tolist())  # 확인용
 
     return df
 
