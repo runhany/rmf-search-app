@@ -16,6 +16,7 @@ def load_data():
     # CSV 아닌 경우 확인
     st.code(response.text[:300])
     
+    csv_raw = StringIO(response.text)
     df = pd.read_csv(csv_raw)
     df.columns = df.columns.str.strip()  # 공백 제거
     st.write("✅ 컬럼 목록:", df.columns.tolist())  # 확인용
